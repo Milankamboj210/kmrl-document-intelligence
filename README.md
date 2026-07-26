@@ -1,4 +1,4 @@
-# KMRL AI Document Search
+# KMRL Document Intelligence
 
 An intelligent document search platform prototype developed for the Smart India Hackathon problem statement of Kochi Metro Rail Limited (KMRL).
 
