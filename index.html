@@ -1,0 +1,632 @@
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Metro - Document Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="kerala-metro-logo.png" alt="Kerala Metro" class="logo-img">
+                <h1>Kerala Metro DMS</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#documents">Documents</a></li>
+                    <li><a href="#ai-tools">AI Tools</a></li>
+                    <li><a href="#reports">Reports</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Role Selection Modal -->
+    <div id="role-selection-modal" class="modal" style="display: block;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-tie"></i> Select Your Role - KMRL</h3>
+            </div>
+            <div class="role-selection">
+                <div class="role-grid">
+                    <div class="role-card" onclick="selectRole('management')">
+                        <div class="role-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Top Management</h3>
+                        <p>Executive dashboard with strategic insights and KPIs</p>
+                    </div>
+                    <div class="role-card" onclick="selectRole('controller')">
+                        <div class="role-icon">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <h3>Train Controller</h3>
+                        <p>Operations dashboard with real-time train and safety data</p>
+                    </div>
+                    <div class="role-card" onclick="selectRole('engineer')">
+                        <div class="role-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>Engineer</h3>
+                        <p>Technical documents, specifications, and project updates</p>
+                    </div>
+                    <div class="role-card" onclick="selectRole('finance')">
+                        <div class="role-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>Finance Officer</h3>
+                        <p>Financial reports, budgets, and procurement documents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Management Dashboard -->
+        <section id="dashboard-management" class="section role-dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2><i class="fas fa-chart-line"></i> Executive Dashboard - KMRL</h2>
+                    <div class="role-badge">Top Management</div>
+                </div>
+                
+                <!-- Executive KPIs -->
+                <div class="executive-kpis">
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="kpi-data">
+                            <h3 id="daily-ridership">1,24,567</h3>
+                            <p>Daily Ridership</p>
+                            <span class="trend positive">+5.2% vs yesterday</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="kpi-data">
+                            <h3 id="revenue-today">₹18.7L</h3>
+                            <p>Today's Revenue</p>
+                            <span class="trend positive">+3.1% vs avg</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="kpi-data">
+                            <h3 id="on-time-performance">98.2%</h3>
+                            <p>On-Time Performance</p>
+                            <span class="trend positive">+0.8% vs target</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="kpi-data">
+                            <h3 id="safety-score">99.7%</h3>
+                            <p>Safety Score</p>
+                            <span class="trend neutral">Target achieved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Executive Summary -->
+                <div class="ai-executive-summary">
+                    <h3><i class="fas fa-robot"></i> AI Executive Summary</h3>
+                    <div class="summary-grid">
+                        <div class="summary-card">
+                            <h4>📊 Operations Highlights</h4>
+                            <div id="operations-summary" class="ai-content">Loading AI insights...</div>
+                        </div>
+                        <div class="summary-card">
+                            <h4>💰 Financial Insights</h4>
+                            <div id="financial-summary" class="ai-content">Loading AI insights...</div>
+                        </div>
+                        <div class="summary-card">
+                            <h4>🚨 Critical Alerts</h4>
+                            <div id="alerts-summary" class="ai-content">Loading AI insights...</div>
+                        </div>
+                        <div class="summary-card">
+                            <h4>📈 Strategic Recommendations</h4>
+                            <div id="strategy-summary" class="ai-content">Loading AI insights...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Train Controller Dashboard -->
+        <section id="dashboard-controller" class="section role-dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2><i class="fas fa-train"></i> Operations Control Center</h2>
+                    <div class="role-badge">Train Controller</div>
+                </div>
+                
+                <!-- Real-time Operations -->
+                <div class="ops-grid">
+                    <div class="ops-status">
+                        <h3>Live Train Status</h3>
+                        <div class="train-status-grid">
+                            <div class="train-item">
+                                <span class="train-number">KM-101</span>
+                                <span class="status running">Running</span>
+                                <span class="location">Aluva → Palarivattom</span>
+                            </div>
+                            <div class="train-item">
+                                <span class="train-number">KM-102</span>
+                                <span class="status running">Running</span>
+                                <span class="location">MG Road → Kaloor</span>
+                            </div>
+                            <div class="train-item">
+                                <span class="train-number">KM-103</span>
+                                <span class="status maintenance">Maintenance</span>
+                                <span class="location">Depot</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-alerts">
+                        <h3>Safety Alerts</h3>
+                        <div class="alert-list">
+                            <div class="alert-item priority-high">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Track inspection due - Line 1, Sector 3</span>
+                            </div>
+                            <div class="alert-item priority-medium">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Weather advisory - Heavy rain expected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Operations Summary -->
+                <div class="ai-ops-summary">
+                    <h3><i class="fas fa-robot"></i> AI Operations Insights</h3>
+                    <div id="controller-ai-summary" class="ai-content">Loading operational insights...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engineer Dashboard -->
+        <section id="dashboard-engineer" class="section role-dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2><i class="fas fa-hard-hat"></i> Engineering Control Center</h2>
+                    <div class="role-badge">Engineer</div>
+                </div>
+                
+                <!-- Project Status -->
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h4>Phase 2 Extension</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                        <p>65% Complete • On Track</p>
+                    </div>
+                    <div class="project-card">
+                        <h4>Station Upgrades</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 82%;"></div>
+                        </div>
+                        <p>82% Complete • Ahead of Schedule</p>
+                    </div>
+                </div>
+
+                <!-- Technical AI Summary -->
+                <div class="ai-tech-summary">
+                    <h3><i class="fas fa-robot"></i> Technical AI Analysis</h3>
+                    <div id="engineer-ai-summary" class="ai-content">Loading technical insights...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Finance Dashboard -->
+        <section id="dashboard-finance" class="section role-dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2><i class="fas fa-calculator"></i> Financial Control Center</h2>
+                    <div class="role-badge">Finance Officer</div>
+                </div>
+                
+                <!-- Financial KPIs -->
+                <div class="finance-kpis">
+                    <div class="finance-card">
+                        <h4>Monthly Revenue</h4>
+                        <h3>₹45.2 Cr</h3>
+                        <span class="trend positive">+12% YoY</span>
+                    </div>
+                    <div class="finance-card">
+                        <h4>Operating Expenses</h4>
+                        <h3>₹32.1 Cr</h3>
+                        <span class="trend negative">+5% vs budget</span>
+                    </div>
+                    <div class="finance-card">
+                        <h4>Pending Approvals</h4>
+                        <h3>₹8.5 Cr</h3>
+                        <span class="documents-count">23 documents</span>
+                    </div>
+                </div>
+
+                <!-- AI Financial Summary -->
+                <div class="ai-finance-summary">
+                    <h3><i class="fas fa-robot"></i> Financial AI Insights</h3>
+                    <div id="finance-ai-summary" class="ai-content">Loading financial insights...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Original Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-docs">1,247</h3>
+                            <p>Total Documents</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="ai-processed">892</h3>
+                            <p>AI Processed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="pending-review">45</h3>
+                            <p>Pending Review</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="active-users">23</h3>
+                            <p>Active Users</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Quick Actions -->
+                <div class="quick-actions">
+                    <h3>AI-Powered Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="openAIChat()">
+                            <i class="fas fa-comments"></i>
+                            AI Assistant
+                        </button>
+                        <button class="action-btn" onclick="smartDocumentScan()">
+                            <i class="fas fa-scanner"></i>
+                            Smart Scan
+                        </button>
+                        <button class="action-btn" onclick="generateReport()">
+                            <i class="fas fa-chart-bar"></i>
+                            Auto Report
+                        </button>
+                        <button class="action-btn" onclick="duplicateDetection()">
+                            <i class="fas fa-copy"></i>
+                            Find Duplicates
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-upload text-green"></i>
+                            <span>Project Tender KM-2024-001 uploaded and AI-categorized</span>
+                            <small>2 minutes ago</small>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-search text-blue"></i>
+                            <span>AI extracted metadata from 15 construction reports</span>
+                            <small>15 minutes ago</small>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-check text-green"></i>
+                            <span>Compliance documents auto-verified by AI</span>
+                            <small>1 hour ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documents Section -->
+        <section id="documents" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Document Management</h2>
+                    <button class="btn-primary" onclick="openUploadModal()">
+                        <i class="fas fa-plus"></i>
+                        Upload Documents
+                    </button>
+                </div>
+
+                <!-- Smart Search Bar -->
+                <div class="smart-search">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="smart-search" placeholder="Search documents with AI (e.g., 'find all tender documents from 2024' or 'show safety reports')">
+                        <button class="ai-search-btn" onclick="performAISearch()">
+                            <i class="fas fa-robot"></i>
+                            AI Search
+                        </button>
+                    </div>
+                    <div class="search-suggestions" id="search-suggestions"></div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <option value="tenders">Tenders</option>
+                        <option value="contracts">Contracts</option>
+                        <option value="safety">Safety Reports</option>
+                        <option value="finance">Financial</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="operations">Operations</option>
+                    </select>
+                    <select id="date-filter">
+                        <option value="">All Dates</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="year">This Year</option>
+                    </select>
+                    <select id="status-filter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="archived">Archived</option>
+                        <option value="pending">Pending Review</option>
+                    </select>
+                </div>
+
+                <!-- Document Grid -->
+                <div class="document-grid" id="document-grid">
+                    <!-- Documents will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Tools Section -->
+        <section id="ai-tools" class="section">
+            <div class="container">
+                <h2>AI-Powered Tools</h2>
+                <div class="ai-tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-text"></i>
+                        </div>
+                        <h3>Document Summarization</h3>
+                        <p>Automatically generate summaries of lengthy documents</p>
+                        <button class="btn-secondary" onclick="openSummarizationTool()">Use Tool</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h3>Auto Classification</h3>
+                        <p>AI categorizes documents based on content and metadata</p>
+                        <button class="btn-secondary" onclick="runAutoClassification()">Classify All</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>Language Detection</h3>
+                        <p>Detect and translate documents in Malayalam, English, and Hindi</p>
+                        <button class="btn-secondary" onclick="openTranslationTool()">Translate</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Compliance Checker</h3>
+                        <p>AI reviews documents for compliance with metro safety standards</p>
+                        <button class="btn-secondary" onclick="runComplianceCheck()">Check Compliance</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>OCR Text Extraction</h3>
+                        <p>Extract text from scanned documents and images</p>
+                        <button class="btn-secondary" onclick="openOCRTool()">Extract Text</button>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-copy"></i>
+                        </div>
+                        <h3>Duplicate Detection</h3>
+                        <p>Find and manage duplicate documents using AI comparison</p>
+                        <button class="btn-secondary" onclick="findDuplicates()">Find Duplicates</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="section">
+            <div class="container">
+                <h2>Reports & Analytics</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Document Usage Analytics</h3>
+                        <div class="chart-placeholder">
+                            <canvas id="usage-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <h3>AI Processing Insights</h3>
+                        <div class="insight-stats">
+                            <div class="insight-item">
+                                <span class="metric">95%</span>
+                                <span class="label">Classification Accuracy</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="metric">2.3s</span>
+                                <span class="label">Avg Processing Time</span>
+                            </div>
+                            <div class="insight-item">
+                                <span class="metric">847</span>
+                                <span class="label">Documents Processed Today</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Chat Modal -->
+    <div id="ai-chat-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> AI Assistant</h3>
+                <span class="close" onclick="closeAIChat()">&times;</span>
+            </div>
+            <div class="chat-container" id="chat-container">
+                <div class="ai-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        Hello! I'm your Kerala Metro AI assistant. I can help you organize documents, find information, and automate tasks. How can I assist you today?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Ask me anything about your documents...">
+                <button onclick="sendChatMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-upload"></i> Upload Documents</h3>
+                <span class="close" onclick="closeUploadModal()">&times;</span>
+            </div>
+            <div class="upload-container">
+                <div class="upload-zone" id="upload-zone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag and drop files here or click to browse</p>
+                    <p class="upload-note">Supports PDF, DOC, DOCX, JPG, PNG (Max 10MB each)</p>
+                    <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                </div>
+                <div class="upload-options">
+                    <label>
+                        <input type="checkbox" id="auto-classify" checked>
+                        Auto-classify with AI
+                    </label>
+                    <label>
+                        <input type="checkbox" id="extract-text" checked>
+                        Extract text (OCR)
+                    </label>
+                    <label>
+                        <input type="checkbox" id="generate-summary">
+                        Generate AI summary
+                    </label>
+                </div>
+                <div class="upload-progress" id="upload-progress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p id="progress-text">Uploading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Viewer Modal -->
+    <div id="document-viewer" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="doc-title">Document Viewer</h3>
+                <span class="close" onclick="closeDocumentViewer()">&times;</span>
+            </div>
+            <div class="document-content">
+                <div class="doc-sidebar">
+                    <div class="doc-info">
+                        <h4>Document Information</h4>
+                        <div class="info-item">
+                            <label>Category:</label>
+                            <span id="doc-category">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Date Added:</label>
+                            <span id="doc-date">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Size:</label>
+                            <span id="doc-size">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>AI Confidence:</label>
+                            <span id="doc-confidence">-</span>
+                        </div>
+                    </div>
+                    <div class="ai-insights">
+                        <h4>AI Insights</h4>
+                        <div class="insight-box" id="ai-summary">
+                            <strong>Summary:</strong>
+                            <p id="summary-text">Loading AI summary...</p>
+                        </div>
+                        <div class="insight-box">
+                            <strong>Key Topics:</strong>
+                            <div class="tags" id="key-topics"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="doc-viewer">
+                    <iframe id="doc-frame" src="" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating AI Assistant Button -->
+    <div class="floating-ai-btn" onclick="openAIChat()">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
